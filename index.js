@@ -50,7 +50,7 @@ return start().then(() => {
     console.log('Messages sent to all users!');
   };
 
-  const checkTransactionJob = new CronJob('*/20 * * * *', () =>
+  const checkTransactionJob = new CronJob('*/12 * * * *', () =>
     checkTransaction(sendRefreshProducts)
   );
   checkTransactionJob.start();
