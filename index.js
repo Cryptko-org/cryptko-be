@@ -55,3 +55,5 @@ start().then(() => {
   );
   checkTransactionJob.start();
 });
+
+return 0;
