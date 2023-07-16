@@ -6,9 +6,17 @@ module.exports = class OrderDto {
   description;
   orderTime;
   updateStatusTime;
+  fullName;
+  phoneNumber;
+  deliveryCityRef;
+  deliveryWarehouse;
 
   constructor(model) {
     this.id = model._id;
+    this.fullName = model.fullName;
+    this.phoneNumber = model.phoneNumber;
+    this.deliveryCityRef = model.deliveryCityRef;
+    this.deliveryWarehouse = model.deliveryWarehouse;
     this.txhash = model.txhash;
     this.productId = model.productId;
     this.status = model.status;

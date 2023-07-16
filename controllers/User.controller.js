@@ -4,10 +4,10 @@ class UserController {
   async buyProduct(req, res, next) {
     try {
       const { walletAddress } = req.params;
-      const { productId, txhash } = req.body;
+      const { productId, txhash, customerInfo } = req.body;
       console.log(walletAddress, productId, txhash);
 
-      const data = await UserService.buyProduct(walletAddress, productId, txhash);
+      const data = await UserService.buyProduct(walletAddress, productId, txhash, customerInfo);
 
       return res.status(200).send({ data, success: true });
     } catch (err) {

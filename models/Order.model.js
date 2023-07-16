@@ -5,6 +5,10 @@ const OrderModel = new Schema({
     ref: 'product',
     type: String,
   },
+  fullName: String,
+  phoneNumber: String,
+  deliveryCityRef: String,
+  deliveryWarehouse: String,
   txhash: String,
   status: String, // 'PENDING/SUCCESS/FAILURE'
   description: String,

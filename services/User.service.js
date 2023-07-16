@@ -4,7 +4,7 @@ const OrderModel = require('../models/Order.model');
 const OrderDto = require('../dtos/Order.dto');
 
 class UserService {
-  async buyProduct(walletAddress, productId, txhash) {
+  async buyProduct(walletAddress, productId, txhash, customerInfo) {
     if (!walletAddress) {
       throw Error('Wallet address missed!');
     }
@@ -15,6 +15,18 @@ class UserService {
 
     if (!txhash) {
       throw Error('Txhash missed!');
+    }
+
+    const { fullName, phoneNumber, deliveryCityRef, deliveryWarehouse } = customerInfo;
+
+    if (!fullName) {
+      throw Error('CustomerInfo field missed fullName!');
+    } else if (!phoneNumber) {
+      throw Error('CustomerInfo field missed phoneNumber!');
+    } else if (!deliveryCityRef) {
+      throw Error('CustomerInfo field missed deliveryCityRef!');
+    } else if (!deliveryWarehouse) {
+      throw Error('CustomerInfo field missed deliveryWarehouse!');
     }
 
     let user = await UserModel.findOne({ walletAddress });
@@ -33,6 +45,10 @@ class UserService {
         _id: orderId,
         productId,
         txhash,
+        fullName,
+        phoneNumber,
+        deliveryCityRef,
+        deliveryWarehouse,
         orderTime: new Date().getTime(),
         status: 'PENDING',
       },
