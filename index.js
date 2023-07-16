@@ -28,7 +28,7 @@ const start = async () => {
   });
 };
 
-start().then(() => {
+return start().then(() => {
   console.log('Success started!');
 
   const WSS_PORT = process.env.WEBSOCKET_PORT || 10001;
@@ -54,6 +54,6 @@ start().then(() => {
     checkTransaction(sendRefreshProducts)
   );
   checkTransactionJob.start();
-});
 
-return 0;
+  return 0;
+});
