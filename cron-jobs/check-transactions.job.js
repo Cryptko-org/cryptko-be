@@ -158,24 +158,25 @@ const updatePendingOrders = async () => {
   }
 };
 
-const checkTransactionsStatus = async (callback) => {
+const checkTransactionsStatus = () => {
   console.log('Check transactions job!');
 
-  return updatePendingOrders().then(async (orders) => {
-    const isHavePendingTransactions = orders.some((order) => order.status === 'PENDING');
+  return updatePendingOrders()
+    .then(async (orders) => {
+      const isHavePendingTransactions = orders.some((order) => order.status === 'PENDING');
 
-    if (isHavePendingTransactions) {
-      console.log('Have pending transactions!');
-      return;
-    }
+      if (isHavePendingTransactions) {
+        console.log('Have pending transactions!');
+        return;
+      }
 
-    console.log('Updating product prices!');
+      console.log('Updating product prices!');
 
-    return updateProductsPrices().then(() => {
+      return updateProductsPrices();
+    })
+    .then(() => {
       console.log('Product prices updated!');
-      callback();
     });
-  });
 };
 
 module.exports = checkTransactionsStatus;
